@@ -6,8 +6,7 @@ import Register from './Register'
 import Home from './Home'
 import Dashboard from './protected/Dashboard'
 import { logout } from '../helpers/auth'
-import { firebaseAuth } from '../config/constants'
-import base from '../base'
+import base, { baseAuth } from '../base'
 
 function MatchWhenAuthed ({component: Component, authed, ...rest}) {
   return (
@@ -32,9 +31,11 @@ function MatchWhenUnauthed ({component: Component, authed, ...rest}) {
 }
 
 export default class App extends Component {
+
   state = {
     authed: false,
     loading: true,
+    state: {}
   }
   componentWillMount() {
     this.ref = base.syncState('/', {
@@ -43,11 +44,12 @@ export default class App extends Component {
     })
   }
   componentDidMount () {
-    this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
+    this.removeListener = baseAuth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({
           authed: true,
           loading: false,
+          user: user
         })
       } else {
         this.setState({
@@ -55,6 +57,7 @@ export default class App extends Component {
         })
       }
     })
+
   }
   componentWillUnmount () {
     this.removeListener()
