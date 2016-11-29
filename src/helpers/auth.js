@@ -1,4 +1,5 @@
 import { ref, baseAuth } from '../base'
+import youTube from '../youtube-test.js'
 
 export function auth (email, pw) {
   return baseAuth().createUserWithEmailAndPassword(email, pw)
@@ -19,7 +20,7 @@ export function saveUser (user) {
     .set({
       email: user.email,
       uid: user.uid,
-      zumbas: [],
+      zumbas: []
     })
     .then(() => user)
 }

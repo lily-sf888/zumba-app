@@ -1,4 +1,4 @@
-import YouTube from 'youtube-node'
+var YouTube = require('youtube-node');
 
 require('dotenv').config();
 
@@ -13,6 +13,13 @@ require('dotenv').config();
     console.log(error);
    }
    else {
-     console.log(JSON.stringify(result, null, 2));
+      JSON.stringify(result, null, 2);
    }
+
+
  });
+
+ exports.youTube = youTube;
+
+
+ //console.log('YOUTUBE', youTube)
