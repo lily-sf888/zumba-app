@@ -8,6 +8,6 @@ const base = Rebase.createClass({
 
 export const ref = base.database().ref()
 export const baseAuth = base.auth
-//export const youTubeApi = 'AIzaSyA156PUcV0duLOUoBGAmP4h9u--Iqit0X8'
+
 
 export default base
