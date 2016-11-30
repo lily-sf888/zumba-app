@@ -1,19 +1,20 @@
+require('dotenv').config();
 var YouTube = require('youtube-node');
 
-require('dotenv').config();
-
-//console.log('key' + process.env.MY_KEY);
+import { ref } from './base'
 
  var youTube = new YouTube();
 
- youTube.setKey(process.env.MY_KEY);
+ youTube.setKey(process.env.REACT_APP_SECRET_CODE);
 
  youTube.search('zumba', 2, function(error, result) {
    if (error) {
-    console.log(error);
+    console.log("ERROR", error);
    }
    else {
-      JSON.stringify(result, null, 2);
+     var videoIds = result.items.map(video => video.id.videoId)
+
+     ref.child('/youtube').set({videoIds})
    }
 
 

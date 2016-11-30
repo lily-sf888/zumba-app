@@ -102,7 +102,8 @@ export default class App extends Component {
                 <Match pattern='/' exactly component={Home} />
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/login' component={Login} />
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/register' component={Register} />
-                <MatchWhenAuthed authed={this.state.authed} pattern='/dashboard' component={Dashboard} />
+                <MatchWhenAuthed authed={this.state.authed} pattern='/dashboard'
+                component={() => <Dashboard {...this.state} /> } />
                 <Miss render={() => <h3>No Match</h3>} />
               </div>
             </div>

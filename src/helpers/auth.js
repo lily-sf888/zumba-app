@@ -1,5 +1,4 @@
 import { ref, baseAuth } from '../base'
-import youTube from '../youtube-test.js'
 
 export function auth (email, pw) {
   return baseAuth().createUserWithEmailAndPassword(email, pw)

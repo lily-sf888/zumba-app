@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
-
-import YouTube from 'youtube-node'
+import YouTube from 'react-youtube'
 
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
-    console.log('State', props)
   }
+  //map over youtube component and render videos on screen
   render () {
-
+    console.log("STATE", this.props)
     return (
       <div>
-        Dashboard. This is a protected route. You can only see this if you're authed.
+      {this.props.users
+        ? <div>Rendering Videos</div>
+        : <div>Loading Videos....</div>
+      }
       </div>
     )
   }
