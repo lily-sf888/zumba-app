@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import YouTube from 'react-youtube'
 
-class Container extends Component {
+class VideoWrapper extends Component {
   render () {
     return (
       <div><YouTube /></div>
@@ -27,10 +27,10 @@ export default class Dashboard extends Component {
       <div>
         {this.props.users?
         <div>{this.props.users.youtube.videoIds.map(video =>
-        <Container key={video}>
+        <VideoWrapper key={video}>
         <YouTube videoId={video}
          opts={opts} onReady={this._onReady} />
-        </Container>
+        </VideoWrapper>
         )}</div>
         : <div>Loading Videos....</div>
       }
