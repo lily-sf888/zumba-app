@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../youtube'
+// import '../youtube'
 
 export default class Home extends Component {
 

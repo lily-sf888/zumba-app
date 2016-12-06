@@ -8,6 +8,4 @@ const base = Rebase.createClass({
 
 export const ref = base.database().ref()
 export const baseAuth = base.auth
-
-
 export default base

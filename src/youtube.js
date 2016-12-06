@@ -5,7 +5,9 @@ import { ref } from './base'
 
  youTube.setKey(process.env.REACT_APP_YOUTUBE_API);
 
- youTube.search('zumba', 3, function(error, result) {
+ youTube.addParam('type', 'video');
+
+ youTube.search('zumba', 5, function(error, result) {
    if (error) {
     console.log("ERROR", error);
    }
@@ -13,7 +15,7 @@ import { ref } from './base'
      //mapping over the result so we only store the ids in our firebase database
      var videoIds = result.items.map(video => video.id.videoId)
      //adding a child to our database called youtube and setting the ids there
-     ref.child('/youtube').set({videoIds})
+     ref.child(`youtube`).set({videoIds})
    }
 });
 

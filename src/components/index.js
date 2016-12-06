@@ -5,6 +5,7 @@ import Login from './Login'
 import Register from './Register'
 import Home from './Home'
 import Dashboard from './protected/Dashboard'
+import Favorites from './protected/Favorites'
 import { logout } from '../helpers/auth'
 import base, { baseAuth } from '../base'
 
@@ -80,6 +81,9 @@ export default class App extends Component {
                     <Link to="/dashboard" className="navbar-brand">Dashboard</Link>
                   </li>
                   <li>
+                    <Link to="/favorites" className="navbar-brand">Favorites</Link>
+                  </li>
+                  <li>
                     {this.state.authed
                       ? <button
                           style={{border: 'none', background: 'transparent'}}
@@ -103,7 +107,8 @@ export default class App extends Component {
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/login' component={Login} />
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/register' component={Register} />
                 <MatchWhenAuthed authed={this.state.authed} pattern='/dashboard'
-                component={() => <Dashboard {...this.state} /> } />
+                component={() => <Dashboard users={this.state.users} user={this.state.user} /> } />
+                <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={Favorites} />
                 <Miss render={() => <h3>No Match</h3>} />
               </div>
             </div>
