@@ -33,6 +33,11 @@ function MatchWhenUnauthed ({component: Component, authed, ...rest}) {
 
 export default class App extends Component {
 
+  constructor() {
+    super()
+    this.onStarClick = this.onStarClick.bind(this)
+  }
+
   state = {
     authed: false,
     loading: true,
@@ -63,6 +68,11 @@ export default class App extends Component {
   componentWillUnmount () {
     this.removeListener()
   }
+
+  onStarClick(stars) {
+    this.setState({ stars })
+  }
+
   render() {
     return this.state.loading === true ? <h1>Loading</h1> : (
       <BrowserRouter>
@@ -107,7 +117,8 @@ export default class App extends Component {
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/login' component={Login} />
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/register' component={Register} />
                 <MatchWhenAuthed authed={this.state.authed} pattern='/dashboard'
-                component={() => <Dashboard users={this.state.users} user={this.state.user} /> } />
+                component={() => <Dashboard users={this.state.users} user={this.state.user}
+                onStarClick={this.onStarClick} /> } />
                 <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={Favorites} />
                 <Miss render={() => <h3>No Match</h3>} />
               </div>

@@ -31,7 +31,8 @@ export default class Dashboard extends Component {
       }
     }
 
-
+    const stars = this.props
+    console.log("stars", stars)
 
     return (
       //checking that users have signed in, then mapping over the youtube api
@@ -51,7 +52,7 @@ export default class Dashboard extends Component {
                       name={id}
                       starCount={5}
                       value={5}
-                      onStarClick={this.onStarClick.bind(this)}
+                      onStarClick={() => this.props.onStarClick(stars)}
                      />
                   </div>
               </div>
