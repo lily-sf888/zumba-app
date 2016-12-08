@@ -1,5 +1,37 @@
 body {
+  height: 3000px;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  background: black;
+  background: -webkit-linear-gradient(black, #808080);
+  background: -o-linear-gradient(black, #808080);
+  background: -moz-linear-gradient(black, #808080);
+  background: linear-gradient(black, #808080);
+
+}
+
+
+h1 {
+  display: table;
+  margin: 0 auto;
+  font-weight: 500;
+  font-size: 6em;
+  background: -webkit-linear-gradient(330deg, #99e052 25%, #52e0e0 50%, #9952e0 75%, #e05252 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 200px;
+  font-family: 'Chicle', cursive;
+}
+
+div {
+  text-align: center;
+}
+
+h4 {
+  color: #DCDCDC;
+}
+
+label  {
+  font-size: x-large;
+  margin-bottom: 20px;
 }

@@ -1,69 +1,61 @@
 import React, { Component } from 'react'
 import YouTube from 'react-youtube'
-import StarRating from 'react-star-rating'
+import StarRatingComponent from 'react-star-rating-component'
 import { ref } from '../../base'
+
+
 
 export default class Dashboard extends Component {
 
+    constructor(props) {
+    super(props)
+    if(this.props.user){
+    let uid = this.props.user.uid
+  }
+  }
+
+  onStarClick(nextValue, prevValue, name) {
+      // capture number of stars and write code to put it into firebase
+
+
+      ref.child(`/users/${this.uid}/favorites`).update({[name]: nextValue})
+  }
+
   render () {
-    // let uid
-    //
-    // if(this.props.user) {
-    //   uid = this.props.user.uid
-    //   // console.log("USER ID", uid)
-    //   // console.log("USERS", this.props.users)
-    // }
 
-    const videoRender = function(id) {
-      //console.log('currentId', id)
-      const opts = {
-        height: '390',
-        width: '640',
-        playerVars: {
+    const opts = {
+      height: '390',
+      width: '640',
+      playerVars: {
         autoplay: 0
-        }
       }
-
-
-      const handleRatingClick = function(e, data) {
-        e.preventDefault()
-        alert(`You left ${data.rating} for ${data.caption}`)
-      }
-
-
-
-      // const ratingChanged = function(newRating) {
-      //
-      //   console.log("NewRating", newRating)
-      //   ref.child(`/users/${uid}/favorites`).set({[id]: newRating})
-      // };
-
-      // set the stars to the value in the state or 0
-      // numStars={this.props.users[uid].favorites[id] || 0}
-      return (
-
-          <div key={id}>
-              <YouTube videoId={id} opts={opts} />
-              <StarRating
-              name="handler"
-              caption="Rate your video"
-              totalStars={5}
-              onRatingClick={this.handleRatingClick.bind(this)}
-               />
-          </div>
-
-
-      )
     }
+
+
 
     return (
       //checking that users have signed in, then mapping over the youtube api
       //extracting the ids and inject them into the YouTube component
       <div>
         {this.props.users?
-        <div>
+        <div id="video-position">
+        <h1 id="zumba-title">Get Your Zumba On!</h1>
           {this.props.users.youtube.videoIds.map(id => {
-            return videoRender(id)
+
+            return (
+              <div key={id}>
+                  <YouTube videoId={id} opts={opts} />
+                  <div>
+                   <h4>Rate this video</h4>
+                    <StarRatingComponent
+                      name={id}
+                      starCount={5}
+                      value={5}
+                      onStarClick={this.onStarClick.bind(this)}
+                     />
+                  </div>
+              </div>
+            )
           })}
         </div>
         : <div>Loading Videos....</div>
@@ -71,5 +63,4 @@ export default class Dashboard extends Component {
       </div>
     )
   }
-
 }
