@@ -1,13 +1,17 @@
+html {
+  height: 100%;
+}
+
 body {
-  height: 3000px;
+  height: 100%;
   margin: 0;
-  padding: 0;
+  padding-top: 70px;
   background: black;
   background: -webkit-linear-gradient(black, #808080);
   background: -o-linear-gradient(black, #808080);
   background: -moz-linear-gradient(black, #808080);
   background: linear-gradient(black, #808080);
-
+  color: #C3CFD8;
 }
 
 

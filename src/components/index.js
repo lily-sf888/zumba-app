@@ -69,6 +69,8 @@ export default class App extends Component {
     this.removeListener()
   }
 
+  // keep track of number of videos to show. 
+
   onStarClick(stars) {
     this.setState({ stars })
   }
@@ -78,7 +80,7 @@ export default class App extends Component {
       <BrowserRouter>
         {({router}) => (
           <div>
-            <nav className="navbar navbar-default navbar-static-top">
+            <nav className="navbar navbar-default navbar-fixed-top">
               <div className="container">
                 <div className="navbar-header">
                   <Link to="/" className="navbar-brand"></Link>

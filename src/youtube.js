@@ -7,7 +7,7 @@ import { ref } from './base'
 
  youTube.addParam('type', 'video');
 
- youTube.search('zumba', 5, function(error, result) {
+ youTube.search('zumba', 10, function(error, result) {
    if (error) {
     console.log("ERROR", error);
    }
