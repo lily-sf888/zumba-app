@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
 import '../youtube'
 
+const bgColors = {
+  "black": "#000000"
+}
+
+
 export default class Home extends Component {
 
   render () {
 
     return (
-      <div>
+      <div className="container z-depth-5" >
         <h1>Let's Zumba!</h1>
-        <blockquote className="text-left">
+        <blockquote className="text-left" style={{
+          backgroundColor: bgColors.black,
+          padding: 30
+        }}>
         <h3>About Zumba App</h3>
         Zumba is a fast paced fitness program inspired by various styles of
         Latin American dance.  It can also contain everything from jazz to

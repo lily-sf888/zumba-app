@@ -41,4 +41,6 @@ blockquote {
   font-size: 22px;
   font-weight: lighter;
   font-family: sans-serif;
+  margin-top: 10%;
+  padding-bottom: 50%;
 }

@@ -69,7 +69,7 @@ export default class App extends Component {
     this.removeListener()
   }
 
-  // keep track of number of videos to show. 
+  // keep track of number of videos to show.
 
   onStarClick(stars) {
     this.setState({ stars })
