@@ -1,10 +1,17 @@
 language: node_js
 node_js:
-  - 4
-  - 6
+- 4
+- 6
 cache:
   directories:
-    - node_modules
+  - node_modules
 script:
-  - npm test
-  - npm run build
+- npm test
+- npm run build
+deploy:
+  provider: heroku
+  api_key:
+    secure: Csjd5GPkMvJI0LmRmnNsdVnLaesfO988jhXG4kNu+dmZPst+1xxHCx0CS+TehN9VW71qnAdH2u2f9scWBqDug8kDUGA8w9piBiGmnpklkyjpKn78pts9TgSxC2PsZzZ5VVHh7HHkuxwnJvIqjx+JKRXurNXAoTxpEkDdYiumx2z9g2zv+A+5pt+U+DIOk2iVRy7z5WEQ9ZZBe4YTV0Dg82YPIEeqTx4XSTovJjIwVZruv4IV0y4PVLF8Ll1sNCwnsXv/bWEq+wlZhn1BaZ4f+pRWw0XJWprJG/1/6rCk/dXrAxawSDL2K2yeP8Kqb3NT92rk9aGFpzD2WACv/hQ3Y621SFOZNiYnzncdPBWu73W6DeH7ZmzWDtx6x6lPayU8oI2PAgSWjRHIg/bK6ZB+r9gXl82gstaIVE5HeeWmeSe1y+fgzdlRzVEaUdjjd2N+zP4A1fC0Ubp+vHD9CCIaIsjLLaL0YfecLoefLKzIiE/S8km00CSmYl4LEpYUmDd3e1JRW/zmPFLWDXqArOn7NmiM+U11C80L4kXQItPJ3OUrdSbM0031rH9VgJn1x0kSf/p4/JQyDiZZqWLGiu//1C8ZQjcAbHaeDLNjZYHkMSm3LHFMY30JkIfarsdyJcJnOLnKJyzaOQLBIyvSpSQAUUXtoU6RtLVewQPRdQZctdw=
+  app: tranquil-ravine-98658
+  on:
+    repo: lily-sf888/zumba-app
