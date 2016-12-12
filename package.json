@@ -28,14 +28,5 @@
   },
   "description": "This is an example repo for authenticating with Firebase and React Router.",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tylermcginnis/react-router-firebase-auth.git"
-  },
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tylermcginnis/react-router-firebase-auth/issues"
-  },
-  "homepage": "https://github.com/tylermcginnis/react-router-firebase-auth#readme"
 }
