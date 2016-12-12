@@ -28,5 +28,5 @@
   },
   "description": "This is an example repo for authenticating with Firebase and React Router.",
   "main": "index.js",
-  "license": "ISC",
+  "license": "ISC"
 }
