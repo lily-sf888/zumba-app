@@ -18,12 +18,11 @@ export default class Dashboard extends Component {
     return false
   }
 
-  onStarClick(nextValue, prevValue, name) {
-      // capture number of stars and write code to put it into firebase
-      console.log(nextValue)
-
-      // ref.child(`/users/${this.uid}/favorites`).update({[name]: nextValue})
-  }
+  // onStarClick(numStars, prevStars, id) {
+  //     // capture number of stars and write code to put it into firebase
+  //     console.log("UID!!!!!!", this.uid)
+  //     ref.child(`/users/${this.uid}/favorites`).set({[id]: numStars})
+  // }
 
   _onReady(event) {
     // access to player in all event handlers via event.target
@@ -31,9 +30,8 @@ export default class Dashboard extends Component {
   }
 
   handleClick() {
-    var childRef = ref.child(`youtube`);
 
-    childRef.once('value', function(snapshot) {
+    ref.child(`youtube`).once('value', function(snapshot) {
       var ids = snapshot.val()
       console.log('ids', ids.videoIds)
     })
@@ -73,7 +71,7 @@ export default class Dashboard extends Component {
                       name={id}
                       starCount={5}
                       value={5}
-                      onStarClick={() => this.props.onStarClick(5)}
+                      onStarClick={this.props.onStarClick}
                      />
                   </div>
               </div>

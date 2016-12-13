@@ -7,7 +7,7 @@ import Home from './Home'
 import Dashboard from './protected/Dashboard'
 import Favorites from './protected/Favorites'
 import { logout } from '../helpers/auth'
-import base, { baseAuth } from '../base'
+import base, { baseAuth, ref } from '../base'
 
 function MatchWhenAuthed ({component: Component, authed, ...rest}) {
   return (
@@ -71,8 +71,25 @@ export default class App extends Component {
 
   // keep track of number of videos to show.
 
-  onStarClick(stars) {
-    this.setState({ stars })
+  onStarClick(numStars, prevStars, id) {
+    console.log("USER", this.state.user.uid)
+    ref.child(`/users/${this.state.user.uid}/favorites`).update({[id]: numStars})
+    // this.setState({ stars })
+    //retrieve numStars from firebase and find 4 star and above
+    var faveIds;
+    ref.child(`/users/${this.state.user.uid}/favorites`).once('value', function(snapshot) {
+    faveIds = snapshot.val()
+    console.log('ids', faveIds) })
+
+
+
+    faveIds = Object.keys(faveIds).filter(key => {
+      return faveIds[key] > 3
+    })
+    console.log('faveIds', faveIds)
+   this.setState({faveIds: faveIds})
+
+
   }
 
   render() {
@@ -121,7 +138,8 @@ export default class App extends Component {
                 <MatchWhenAuthed authed={this.state.authed} pattern='/dashboard'
                 component={() => <Dashboard users={this.state.users} user={this.state.user}
                 onStarClick={this.onStarClick} /> } />
-                <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={Favorites} />
+                <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={() => <Favorites
+                faveIds={this.state.faveIds} /> } />
                 <Miss render={() => <h3>No Match</h3>} />
               </div>
             </div>

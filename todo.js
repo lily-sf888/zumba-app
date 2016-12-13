@@ -3,5 +3,4 @@
 //allow user to post comments on their favorite videos
 //allow user to load more videos
 //fix height attribute for background
-//push to heroku with travis enabled
 //work on testing unit
