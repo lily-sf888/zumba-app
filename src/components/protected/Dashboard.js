@@ -18,12 +18,6 @@ export default class Dashboard extends Component {
     return false
   }
 
-  // onStarClick(numStars, prevStars, id) {
-  //     // capture number of stars and write code to put it into firebase
-  //     console.log("UID!!!!!!", this.uid)
-  //     ref.child(`/users/${this.uid}/favorites`).set({[id]: numStars})
-  // }
-
   _onReady(event) {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
@@ -47,9 +41,6 @@ export default class Dashboard extends Component {
       }
 
     }
-
-    // keep track of variable on the user on the state
-
     return (
       //checking that users have signed in, then mapping over the youtube api
       //extracting the ids and inject them into the YouTube component
@@ -58,10 +49,8 @@ export default class Dashboard extends Component {
         Load more videos</button></div>
         {this.props.users?
         <div id="video-position">
-        <h1 id="zumba-title">Get Your Zumba On!</h1>
-
+          <h1 id="zumba-title">Get Your Zumba On!</h1>
           {this.props.users.youtube.videoIds.slice(0, 5).map(id => {
-
             return (
               <div key={id} className="text-center">
                   <YouTube videoId={id} opts={opts} onReady={this._onReady}/>
@@ -76,7 +65,6 @@ export default class Dashboard extends Component {
                   </div>
               </div>
             )
-
           })}
         </div>
         : <div>Loading Videos....</div>

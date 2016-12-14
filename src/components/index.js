@@ -69,29 +69,25 @@ export default class App extends Component {
     this.removeListener()
   }
 
-  // keep track of number of videos to show.
-
   onStarClick(numStars, prevStars, id) {
     console.log("USER", this.state.user.uid)
     ref.child(`/users/${this.state.user.uid}/favorites`).update({[id]: numStars})
     // this.setState({ stars })
-    //retrieve numStars from firebase and find 4 star and above
+    //retrieving data from favorites
     var faveIds;
     ref.child(`/users/${this.state.user.uid}/favorites`).once('value', function(snapshot) {
     faveIds = snapshot.val()
     console.log('ids', faveIds) })
 
-
-
+    //use .filter to find which video has more than 3 stars
     faveIds = Object.keys(faveIds).filter(key => {
       return faveIds[key] > 3
     })
     console.log('faveIds', faveIds)
-   this.setState({faveIds: faveIds})
 
-
+    //setting state on the filtered faveIds so they can be accessed through props
+    this.setState({faveIds: faveIds})
   }
-
   render() {
     return this.state.loading === true ? <h1>Loading</h1> : (
       <BrowserRouter>

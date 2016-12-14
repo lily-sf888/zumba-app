@@ -8,7 +8,7 @@ export default class Favorites extends Component {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
   }
-  
+
   render() {
     const opts = {
       height: '390',
@@ -26,22 +26,15 @@ export default class Favorites extends Component {
         {this.props.faveIds?
           <div>
           {this.props.faveIds.map(id => {
-
             return (
               <div key={id} className="text-center">
                   <YouTube videoId={id} opts={opts} onReady={this._onReady}/>
-
               </div>
             )
-
           })}
-
           </div>
-
         :<div>Loading....</div>}
-
-  </div>
-)
+      </div>
+  )
 }
-
  }
