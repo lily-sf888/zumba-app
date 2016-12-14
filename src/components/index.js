@@ -70,25 +70,29 @@ export default class App extends Component {
   }
 
   onStarClick(numStars, prevStars, id) {
-    console.log("USER", this.state.user.uid)
-    ref.child(`/users/${this.state.user.uid}/favorites`).update({[id]: numStars})
+    if(numStars > 3) {
+      ref.child(`/users/${this.state.user.uid}/favorites`).update({[id]: numStars})
+    }
+
     // this.setState({ stars })
     //retrieving data from favorites
-    var faveIds;
-    ref.child(`/users/${this.state.user.uid}/favorites`).once('value', function(snapshot) {
-    faveIds = snapshot.val()
-    console.log('ids', faveIds) })
-
-    //use .filter to find which video has more than 3 stars
-    faveIds = Object.keys(faveIds).filter(key => {
-      return faveIds[key] > 3
-    })
-    console.log('faveIds', faveIds)
+    // var faveIds;
+    // ref.child(`/users/${this.state.user.uid}/favorites`).once('value', function(snapshot) {
+    // faveIds = snapshot.val()
+    // console.log('ids', faveIds) })
+    //
+    // use .filter to find which video has more than 3 stars
+    // faveIds = Object.keys(faveIds).filter(key => {
+    //   return faveIds[key] > 3
+    // })
+    // console.log('faveIds', faveIds)
 
     //setting state on the filtered faveIds so they can be accessed through props
-    this.setState({faveIds: faveIds})
+    // this.setState({faveIds: faveIds})
   }
+
   render() {
+
     return this.state.loading === true ? <h1>Loading</h1> : (
       <BrowserRouter>
         {({router}) => (
@@ -135,7 +139,7 @@ export default class App extends Component {
                 component={() => <Dashboard users={this.state.users} user={this.state.user}
                 onStarClick={this.onStarClick} /> } />
                 <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={() => <Favorites
-                faveIds={this.state.faveIds} /> } />
+                data={this.state.users} user={this.state.user} /> } />
                 <Miss render={() => <h3>No Match</h3>} />
               </div>
             </div>
