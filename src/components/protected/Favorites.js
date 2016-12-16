@@ -22,7 +22,6 @@ export default class Favorites extends Component {
     return (
       <div>
         <h1>Favorites</h1>
-        Hello from favorites
         {this.props.data && this.props.user ?
           <div>
           {Object.keys(this.props.data.users[this.props.user.uid].favorites)

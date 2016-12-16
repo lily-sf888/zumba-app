@@ -2,16 +2,38 @@ html {
   height: 100%;
 }
 
-body {
+body{
   height: 100%;
   margin: 0;
   padding-top: 70px;
+  background-repeat: repeat;
+  background-size: 100% 100%;
+  background: black;
+  /*
   background: black;
   background: -webkit-linear-gradient(black, #808080);
   background: -o-linear-gradient(black, #808080);
   background: -moz-linear-gradient(black, #808080);
   background: linear-gradient(black, #808080);
-  color: #C3CFD8;
+
+
+ */
+ color: white;
+}
+body::after {
+  content: "";
+  background: url('img/zumba1.png');
+
+  background-size:cover;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  -webkit-filter: grayscale(1); /* Old WebKit */
+  filter: grayscale(1);
 }
 
 
@@ -41,6 +63,25 @@ blockquote {
   font-size: 22px;
   font-weight: lighter;
   font-family: sans-serif;
-  margin-top: 10%;
+  margin-top: 5%;
   padding-bottom: 50%;
+}
+
+.btn-default {
+    color: white;
+    background-color: darkorchid;
+    border-color: darkorchid;
+}
+
+footer {
+  position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #202020;
+    color: black;
+}
+
+footer p {
+  margin: 1% 0 0 1%
 }
