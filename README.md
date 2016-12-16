@@ -9,9 +9,3 @@ This is an example repo for authenticating with Firebase and React Router.
 * Add new users to ```/users``` in your Firebase database
 * Login/Logout Functionality
 * Simple Boostrap UI
-
-#### Instructions:
-* Swap out the firebase config in ```config/constants``` with your own
-* ```npm install```
-* ```npm start```
-* Visit ```localhost:3000```

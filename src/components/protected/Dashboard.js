@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import StarRatingComponent from 'react-star-rating-component'
 import { ref } from '../../base'
-// import YouTubeWrapper from './YouTubeWrapper'
-import YouTube from 'react-youtube'
+//import YouTube from 'react-youtube'
 
 
 export default class Dashboard extends Component {
