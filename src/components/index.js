@@ -36,19 +36,18 @@ export default class App extends Component {
   constructor() {
     super()
     this.onStarClick = this.onStarClick.bind(this)
+    this.loadMoreVideos = this.loadMoreVideos.bind(this)
+    this.loadPreviousVideos = this.loadPreviousVideos.bind(this)
   }
 
   state = {
     authed: false,
     loading: true,
+    numVideos: 5,
+    startVideos: 0,
     state: {}
   }
-  componentWillMount() {
-    this.ref = base.syncState('/', {
-      context: this,
-      state: 'users'
-    })
-  }
+
   componentDidMount () {
     this.removeListener = baseAuth().onAuthStateChanged((user) => {
       if (user) {
@@ -64,6 +63,11 @@ export default class App extends Component {
       }
     })
 
+    this.ref = base.syncState('/', {
+      context: this,
+      state: 'users'
+    })
+
   }
   componentWillUnmount () {
     this.removeListener()
@@ -73,7 +77,24 @@ export default class App extends Component {
     if(numStars > 3) {
       ref.child(`/users/${this.state.user.uid}/favorites`).update({[id]: numStars})
     }
+  }
 
+  loadMoreVideos() {
+    let numVideos  = this.state.numVideos
+    numVideos += 5
+    let startVideos = this.state.startVideos
+    startVideos += 5
+    this.setState({ numVideos, startVideos })
+    console.log("start", startVideos)
+  }
+
+  loadPreviousVideos() {
+    let numVideos  = this.state.numVideos
+    numVideos -= 5
+    let startVideos = this.state.startVideos
+    startVideos -= 5
+    this.setState({ numVideos, startVideos })
+  }
     // this.setState({ stars })
     //retrieving data from favorites
     // var faveIds;
@@ -89,7 +110,7 @@ export default class App extends Component {
 
     //setting state on the filtered faveIds so they can be accessed through props
     // this.setState({faveIds: faveIds})
-  }
+
 
   render() {
 
@@ -104,10 +125,10 @@ export default class App extends Component {
                 </div>
                 <ul className="nav navbar-nav pull-right">
                   <li>
-                    <Link to="/" className="navbar-brand">Home2</Link>
+                    <Link to="/" className="navbar-brand">Home</Link>
                   </li>
                   <li>
-                    <Link to="/dashboard" className="navbar-brand">Dashboard</Link>
+                    <Link to="/dashboard" className="navbar-brand">Videos</Link>
                   </li>
                   <li>
                     <Link to="/favorites" className="navbar-brand">Favorites</Link>
@@ -137,7 +158,9 @@ export default class App extends Component {
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/register' component={Register} />
                 <MatchWhenAuthed authed={this.state.authed} pattern='/dashboard'
                 component={() => <Dashboard users={this.state.users} user={this.state.user}
-                onStarClick={this.onStarClick} /> } />
+                onStarClick={this.onStarClick} numVideos={this.state.numVideos}
+                loadMoreVideos={this.loadMoreVideos} startVideos={this.state.startVideos}/> }
+                />
                 <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={() => <Favorites
                 data={this.state.users} user={this.state.user} /> } />
                 <Miss render={() => <h3>No Match</h3>} />

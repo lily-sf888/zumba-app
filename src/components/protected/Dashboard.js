@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import StarRatingComponent from 'react-star-rating-component'
 import { ref } from '../../base'
 //import YouTube from 'react-youtube'
+import ReactPlayer from 'react-player'
 
 
 export default class Dashboard extends Component {
@@ -13,22 +14,23 @@ export default class Dashboard extends Component {
     }
   }
 
-  shouldComponentUpdate() {
-    return false
-  }
-
   _onReady(event) {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
   }
 
-  handleClick() {
+  // handleClick() {
+  //
+  //   ref.child(`youtube`).once('value', function(snapshot) {
+  //     var ids = snapshot.val()
+  //     console.log('ids', ids.videoIds)
+  //   })
+  // }
 
-    ref.child(`youtube`).once('value', function(snapshot) {
-      var ids = snapshot.val()
-      console.log('ids', ids.videoIds)
-    })
+  shouldComponentUpdate() {
+    return false;
   }
+
 
   render () {
 
@@ -40,19 +42,24 @@ export default class Dashboard extends Component {
       }
 
     }
+    console.log("component rendered", this.props)
     return (
       //checking that users have signed in, then mapping over the youtube api
       //extracting the ids and inject them into the YouTube component
       <div>
-        <div><button type="button" onClick={this.handleClick} className="btn btn-default btn-lg">
-        Load more videos</button></div>
+
+      <ul className="pager">
+        <li className="previous"><a href="#">Previous</a></li>
+        <li className="next"><a onClick={this.props.loadMoreVideos}>Next</a></li>
+      </ul>
+
         {this.props.users?
         <div id="video-position">
           <h1 id="zumba-title">Get Your Zumba On!</h1>
-          {this.props.users.youtube.videoIds.slice(0, 5).map(id => {
+          {this.props.users.youtube.videoIds.slice(this.props.startVideos, this.props.numVideos).map(id => {
             return (
               <div key={id} className="text-center">
-                  <YouTube videoId={id} opts={opts} onReady={this._onReady}/>
+                  <ReactPlayer url={`http://www.youtube.com/watch?v=${id}`} />
                   <div>
                    <h4>Rate this video</h4>
                     <StarRatingComponent

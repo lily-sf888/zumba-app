@@ -1,33 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './components/index';
-import Home from './components/Home'
-// import Home from './components/Home';
+import App from './components/index';
+import Home from './components/Home';
 import ReactTestUtils from 'react-addons-test-utils';
 import { shallow } from 'enzyme';
-// import { Link } from 'react-router'
+import Dashboard from './components/protected/Dashboard';
+import Favorites from './components/protected/Favorites';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<Home />, div);
 });
 
-// it('renders without crashing', () => {
-//   const wrapper = shallow(<App />);
-//   expect([1, 2, 3]).to.have.length(3);
-// });
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<App />, div);
+});
 
-// it('renders an `.HOME`', () => {
-//   const wrapper = shallow(<Home />);
-//   expect(wrapper.find('.container')).to.have.length(1);
-// });
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Dashboard />, div);
+});
 
-
-
-// const renderer = ReactTestUtils.createRenderer();
-// renderer.render(<App />);
-// const result = renderer.getRenderOutput();
-//
-// expect(result.props.children).toEqual([
-//   <div className="container"></div>
-// ]);
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Favorites />, div);
+});
