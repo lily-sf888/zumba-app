@@ -49,7 +49,7 @@ export default class Dashboard extends Component {
       <div>
 
       <ul className="pager">
-        <li className="previous"><a href="#">Previous</a></li>
+        <li className="previous"><a onClick={this.props.loadPreviousVideos}>Previous</a></li>
         <li className="next"><a onClick={this.props.loadMoreVideos}>Next</a></li>
       </ul>
 
@@ -59,7 +59,7 @@ export default class Dashboard extends Component {
           {this.props.users.youtube.videoIds.slice(this.props.startVideos, this.props.numVideos).map(id => {
             return (
               <div key={id} className="text-center">
-                  <ReactPlayer url={`http://www.youtube.com/watch?v=${id}`} />
+                  <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} />
                   <div>
                    <h4>Rate this video</h4>
                     <StarRatingComponent

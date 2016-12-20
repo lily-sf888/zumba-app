@@ -157,9 +157,10 @@ export default class App extends Component {
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/login' component={Login} />
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/register' component={Register} />
                 <MatchWhenAuthed authed={this.state.authed} pattern='/dashboard'
-                component={() => <Dashboard users={this.state.users} user={this.state.user}
+                component={() => < Dashboard users={this.state.users} user={this.state.user}
                 onStarClick={this.onStarClick} numVideos={this.state.numVideos}
-                loadMoreVideos={this.loadMoreVideos} startVideos={this.state.startVideos}/> }
+                loadMoreVideos={this.loadMoreVideos} startVideos={this.state.startVideos}
+                loadPreviousVideos={this.loadPreviousVideos} /> }
                 />
                 <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={() => <Favorites
                 data={this.state.users} user={this.state.user} /> } />

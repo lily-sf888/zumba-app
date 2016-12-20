@@ -90,3 +90,7 @@ footer p {
 #video-position {
   text-align: center;
 }
+
+a {
+  cursor: pointer;
+}
