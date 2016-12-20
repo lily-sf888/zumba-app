@@ -86,11 +86,12 @@ footer p {
   margin: 1% 0 0 1%
 }
 
-
-#video-position {
-  text-align: center;
-}
-
 a {
   cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+  width: 55%;
+  margin: auto;
 }
