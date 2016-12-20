@@ -21,18 +21,6 @@ user makes a change in the app or the database, state is synced from both ends.
 
 Our users can scroll through different YouTube videos and rate them from one to
 five stars.  The videos that are rated four stars and above get saved in the
-Favorites page. 
+Favorites page.
 
-
-
-# Auth with React Router V4 and Firebase V3
-This is an example repo for authenticating with Firebase and React Router.
-
-*Using React 15.4.0, React Router 4, and Firebase 3.6.1*
-
-#### Features:
-* Protected Routes with React Router
-* Register new users with Firebase
-* Add new users to ```/users``` in your Firebase database
-* Login/Logout Functionality
-* Simple Boostrap UI
+This project was bootstrapped with [Auth with React Router V4 and Firebase V3](https://github.com/tylermcginnis/react-router-firebase-auth).
