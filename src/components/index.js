@@ -9,6 +9,7 @@ import Favorites from './protected/Favorites'
 import { logout } from '../helpers/auth'
 import base, { baseAuth, ref } from '../base'
 
+//user authentication
 function MatchWhenAuthed ({component: Component, authed, ...rest}) {
   return (
     <Match
@@ -30,7 +31,8 @@ function MatchWhenUnauthed ({component: Component, authed, ...rest}) {
     />
   )
 }
-
+//App is our parent component, this is where we set states, sync states
+//and set up routes for the different children components
 export default class App extends Component {
 
   constructor() {
@@ -45,6 +47,7 @@ export default class App extends Component {
     loading: true,
     numVideos: 5,
     startVideos: 0,
+    numStars: 0,
     state: {}
   }
 
@@ -62,13 +65,13 @@ export default class App extends Component {
         })
       }
     })
-
     this.ref = base.syncState('/', {
       context: this,
       state: 'users'
     })
 
   }
+
   componentWillUnmount () {
     this.removeListener()
   }
@@ -76,7 +79,9 @@ export default class App extends Component {
   onStarClick(numStars, prevStars, id) {
     if(numStars > 3) {
       ref.child(`/users/${this.state.user.uid}/favorites`).update({[id]: numStars})
+      this.setState({numStars})
     }
+
   }
 
   loadMoreVideos() {
@@ -94,6 +99,15 @@ export default class App extends Component {
     let startVideos = this.state.startVideos
     startVideos -= 5
     this.setState({ numVideos, startVideos })
+  }
+
+  shouldComponentUpdate() {
+    if (this.state.numStars > 3) {
+
+      return false;
+    } else {
+    return true;
+  }
   }
     // this.setState({ stars })
     //retrieving data from favorites

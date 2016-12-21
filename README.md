@@ -7,6 +7,8 @@
 * ES6
 * Babel
 * Webpack
+* Travis CI
+* Heroku
 
 With our [Zumba App](https://tranquil-ravine-98658.herokuapp.com/) user
 authentication, register and login/logout functionality is done through Firebase.
@@ -18,6 +20,7 @@ The Zumba App is build and written in ES6 and React.  We pull data from the YouT
 API, store the necessary data in Firebase and build the different parts of the app
 with React components.  State is synced with our Firebase database, so whenever the
 user makes a change in the app or the database, state is synced from both ends.
+Continuous deployment is done through Travis CI and Heroku.
 
 Our users can scroll through different YouTube videos and rate them from one to
 five stars.  The videos that are rated four stars and above get saved in the

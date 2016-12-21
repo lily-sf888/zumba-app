@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-
-import YouTube from 'react-youtube'
+import ReactPlayer from 'react-player'
+//import YouTube from 'react-youtube'
 
 export default class Favorites extends Component {
 
   _onReady(event) {
-    // access to player in all event handlers via event.target
     event.target.pauseVideo();
   }
 
@@ -16,7 +15,6 @@ export default class Favorites extends Component {
       playerVars: {
         autoplay: 1
       }
-
     }
 
     return (
@@ -28,7 +26,10 @@ export default class Favorites extends Component {
             .map(id => {
               return (
                 <div key={id} className="text-center">
-                  <YouTube videoId={id} opts={opts} onReady={this._onReady}/>
+                  <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} />
+                  <div>
+                  <button type="button" className="btn btn-danger">Delete</button>
+                  </div>
                 </div>
               )
           })}

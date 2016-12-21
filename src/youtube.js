@@ -1,7 +1,7 @@
 import YouTube from 'youtube-node'
 import { ref } from './base'
 
-
+//we access our YouTube api here
  var youTube = new YouTube();
 
  youTube.setKey(process.env.REACT_APP_YOUTUBE_API);
@@ -13,7 +13,6 @@ import { ref } from './base'
     console.log("ERROR", error);
    }
    else {
-
      //mapping over the result so we only store the ids in our firebase database
      var videoIds = result.items.map(video => video.id.videoId)
      //adding a child to our database called youtube and setting the ids there

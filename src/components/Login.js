@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { login } from '../helpers/auth'
 
+//Login component
 export default class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     login(this.email.value, this.pw.value)
-    // 
+    //
   }
   render () {
     return (

@@ -19,40 +19,25 @@ export default class Dashboard extends Component {
     event.target.pauseVideo();
   }
 
-  // handleClick() {
-  //
-  //   ref.child(`youtube`).once('value', function(snapshot) {
-  //     var ids = snapshot.val()
-  //     console.log('ids', ids.videoIds)
-  //   })
-  // }
-
-  shouldComponentUpdate() {
-    return false;
-  }
 
 
   render () {
-
     const opts = {
       height: '390',
       width: '640',
       playerVars: {
         autoplay: 1
       }
-
     }
-    console.log("component rendered", this.props)
+
     return (
       //checking that users have signed in, then mapping over the youtube api
       //extracting the ids and inject them into the YouTube component
       <div>
-
-      <ul className="pager">
-        <li className="previous"><a onClick={this.props.loadPreviousVideos}>Previous</a></li>
-        <li className="next"><a onClick={this.props.loadMoreVideos}>Next</a></li>
-      </ul>
-
+        <ul className="pager">
+          <li className="previous"><a onClick={this.props.loadPreviousVideos}>Previous</a></li>
+          <li className="next"><a onClick={this.props.loadMoreVideos}>Next</a></li>
+        </ul>
         {this.props.users?
         <div id="video-position">
           <h1 id="zumba-title">Get Your Zumba On!</h1>
@@ -65,7 +50,7 @@ export default class Dashboard extends Component {
                     <StarRatingComponent
                       name={id}
                       starCount={5}
-                      value={5}
+                      value={0}
                       onStarClick={this.props.onStarClick}
                      />
                   </div>

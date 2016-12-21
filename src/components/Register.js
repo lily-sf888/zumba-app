@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { auth } from '../helpers/auth'
 
+//Register component
 export default class Register extends Component {
   handleSubmit = (e) => {
     e.preventDefault()

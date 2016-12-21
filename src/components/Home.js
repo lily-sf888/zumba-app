@@ -4,8 +4,7 @@ import '../youtube'
 const bgColors = {
   "black": "#000000"
 }
-
-
+//that's the page user lands on first, no authentication needed
 export default class Home extends Component {
 
   render () {
