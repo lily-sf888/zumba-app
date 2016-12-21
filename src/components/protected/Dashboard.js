@@ -41,7 +41,7 @@ export default class Dashboard extends Component {
         {this.props.users?
         <div id="video-position">
           <h1 id="zumba-title">Get Your Zumba On!</h1>
-          {this.props.users.youtube.videoIds.slice(this.props.startVideos, this.props.numVideos).map(id => {
+          {this.props.users.youtube.videoIds.slice(this.props.numVideos -5, this.props.numVideos).map(id => {
             return (
               <div key={id} className="text-center">
                   <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} />

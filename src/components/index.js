@@ -40,13 +40,13 @@ export default class App extends Component {
     this.onStarClick = this.onStarClick.bind(this)
     this.loadMoreVideos = this.loadMoreVideos.bind(this)
     this.loadPreviousVideos = this.loadPreviousVideos.bind(this)
+    this.deleteVideo = this.deleteVideo.bind(this)
   }
 
   state = {
     authed: false,
     loading: true,
     numVideos: 5,
-    startVideos: 0,
     numStars: 0,
     state: {}
   }
@@ -65,11 +65,11 @@ export default class App extends Component {
         })
       }
     })
+
     this.ref = base.syncState('/', {
       context: this,
       state: 'users'
     })
-
   }
 
   componentWillUnmount () {
@@ -81,33 +81,41 @@ export default class App extends Component {
       ref.child(`/users/${this.state.user.uid}/favorites`).update({[id]: numStars})
       this.setState({numStars})
     }
-
   }
 
   loadMoreVideos() {
     let numVideos  = this.state.numVideos
     numVideos += 5
-    let startVideos = this.state.startVideos
-    startVideos += 5
-    this.setState({ numVideos, startVideos })
-    console.log("start", startVideos)
+
+    this.setState({ numVideos})
+    console.log("start", numVideos)
   }
 
   loadPreviousVideos() {
     let numVideos  = this.state.numVideos
     numVideos -= 5
-    let startVideos = this.state.startVideos
-    startVideos -= 5
-    this.setState({ numVideos, startVideos })
+    this.setState({ numVideos })
   }
 
-  shouldComponentUpdate() {
-    if (this.state.numStars > 3) {
+  // shouldComponentUpdate() {
+  //   return this.state.numStars > 3 ? false : true;
+  // }
 
-      return false;
-    } else {
-    return true;
-  }
+  deleteVideo(videoId) {
+    const uid = this.state.user.uid
+    console.log("VIDEO ID", videoId)
+    let videos = {...this.state.users.users[uid].favorites}
+    videos[videoId] = null
+
+    console.log("Favorties", videos)
+    // console.log("users", this.state.users.users[uid].favorites[videoId])
+
+    this.setState({ videos })
+
+    console.log("STATE", this.state)
+    // find which videoIds
+    // remove from state Object
+    // reset state
   }
     // this.setState({ stars })
     //retrieving data from favorites
@@ -176,8 +184,10 @@ export default class App extends Component {
                 loadMoreVideos={this.loadMoreVideos} startVideos={this.state.startVideos}
                 loadPreviousVideos={this.loadPreviousVideos} /> }
                 />
+
                 <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={() => <Favorites
-                data={this.state.users} user={this.state.user} /> } />
+                data={this.state.users} user={this.state.user} deleteVideo={this.deleteVideo} /> } />
+
                 <Miss render={() => <h3>No Match</h3>} />
               </div>
             </div>

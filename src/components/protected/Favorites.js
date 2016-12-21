@@ -23,12 +23,13 @@ export default class Favorites extends Component {
         {this.props.data && this.props.user ?
           <div>
           {Object.keys(this.props.data.users[this.props.user.uid].favorites)
+            
             .map(id => {
               return (
                 <div key={id} className="text-center">
-                  <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} />
+                  <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} style={{float:'left'}} />
                   <div>
-                  <button type="button" className="btn btn-danger">Delete</button>
+                    <button onClick={this.props.deleteVideo.bind(null, id)} type="button" className="btn btn-danger">Delete</button>
                   </div>
                 </div>
               )
