@@ -23,7 +23,6 @@ body{
 body::after {
   content: "";
   background: url('img/zumba1.png');
-
   background-size:cover;
   opacity: 1;
   top: 0;
@@ -101,6 +100,10 @@ a {
 .btn-danger {
   float: left;
 
+}
+
+.btn {
+  margin: 5px
 }
 
 #root {

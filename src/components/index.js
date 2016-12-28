@@ -104,36 +104,10 @@ export default class App extends Component {
   deleteVideo(videoId) {
     const uid = this.state.user.uid
     console.log("VIDEO ID", videoId)
-    let videos = {...this.state.users.users[uid].favorites}
-    videos[videoId] = null
-
-    console.log("Favorties", videos)
-    // console.log("users", this.state.users.users[uid].favorites[videoId])
-
-    this.setState({ videos })
-
+    ref.child(`/users/${this.state.user.uid}/favorites/${videoId}`).remove()
     console.log("STATE", this.state)
-    // find which videoIds
-    // remove from state Object
-    // reset state
   }
-    // this.setState({ stars })
-    //retrieving data from favorites
-    // var faveIds;
-    // ref.child(`/users/${this.state.user.uid}/favorites`).once('value', function(snapshot) {
-    // faveIds = snapshot.val()
-    // console.log('ids', faveIds) })
-    //
-    // use .filter to find which video has more than 3 stars
-    // faveIds = Object.keys(faveIds).filter(key => {
-    //   return faveIds[key] > 3
-    // })
-    // console.log('faveIds', faveIds)
-
-    //setting state on the filtered faveIds so they can be accessed through props
-    // this.setState({faveIds: faveIds})
-
-
+    
   render() {
 
     return this.state.loading === true ? <h1>Loading</h1> : (
