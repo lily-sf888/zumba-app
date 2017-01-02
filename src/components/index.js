@@ -40,7 +40,14 @@ export default class App extends Component {
     this.onStarClick = this.onStarClick.bind(this)
     this.loadMoreVideos = this.loadMoreVideos.bind(this)
     this.loadPreviousVideos = this.loadPreviousVideos.bind(this)
-    this.deleteVideo = this.deleteVideo.bind(this)
+
+  }
+
+  getChildContext() {
+    return {
+      data: this.state.users,
+      user: this.state.user
+    }
   }
 
   state = {
@@ -101,13 +108,6 @@ export default class App extends Component {
   //   return this.state.numStars > 3 ? false : true;
   // }
 
-  deleteVideo(videoId) {
-    const uid = this.state.user.uid
-    console.log("VIDEO ID", videoId)
-    ref.child(`/users/${this.state.user.uid}/favorites/${videoId}`).remove()
-    console.log("STATE", this.state)
-  }
-    
   render() {
 
     return this.state.loading === true ? <h1>Loading</h1> : (
@@ -159,8 +159,8 @@ export default class App extends Component {
                 loadPreviousVideos={this.loadPreviousVideos} /> }
                 />
 
-                <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={() => <Favorites
-                data={this.state.users} user={this.state.user} deleteVideo={this.deleteVideo} /> } />
+                <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={Favorites} />
+
 
                 <Miss render={() => <h3>No Match</h3>} />
               </div>
@@ -170,4 +170,9 @@ export default class App extends Component {
       </BrowserRouter>
     );
   }
+}
+
+App.childContextTypes = {
+  data: React.PropTypes.object,
+  user: React.PropTypes.object
 }
