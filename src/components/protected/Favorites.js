@@ -4,6 +4,7 @@ import ReactPlayer from 'react-player'
 import {ref} from '../../base'
 
 export default class Favorites extends Component {
+
   constructor() {
     super()
     this.deleteVideo = this.deleteVideo.bind(this)
@@ -14,10 +15,8 @@ export default class Favorites extends Component {
   }
 
   deleteVideo(videoId) {
-    const uid = this.state.user.uid
-    console.log("VIDEO ID", videoId)
-    ref.child(`/users/${this.state.user.uid}/favorites/${videoId}`).remove()
-    console.log("STATE", this.state)
+    const uid = this.context.user.uid
+    ref.child(`/users/${this.context.user.uid}/favorites/${videoId}`).remove()
   }
 
  render() {

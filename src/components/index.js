@@ -35,18 +35,12 @@ function MatchWhenUnauthed ({component: Component, authed, ...rest}) {
 //and set up routes for the different children components
 export default class App extends Component {
 
-  constructor() {
-    super()
-    this.onStarClick = this.onStarClick.bind(this)
-    this.loadMoreVideos = this.loadMoreVideos.bind(this)
-    this.loadPreviousVideos = this.loadPreviousVideos.bind(this)
-
-  }
-
   getChildContext() {
     return {
       data: this.state.users,
-      user: this.state.user
+      user: this.state.user,
+      numVideos: this.state.numVideos,
+      startVideos: this.state.startVideos
     }
   }
 
@@ -83,26 +77,7 @@ export default class App extends Component {
     this.removeListener()
   }
 
-  onStarClick(numStars, prevStars, id) {
-    if(numStars > 3) {
-      ref.child(`/users/${this.state.user.uid}/favorites`).update({[id]: numStars})
-      this.setState({numStars})
-    }
-  }
 
-  loadMoreVideos() {
-    let numVideos  = this.state.numVideos
-    numVideos += 5
-
-    this.setState({ numVideos})
-    console.log("start", numVideos)
-  }
-
-  loadPreviousVideos() {
-    let numVideos  = this.state.numVideos
-    numVideos -= 5
-    this.setState({ numVideos })
-  }
 
   // shouldComponentUpdate() {
   //   return this.state.numStars > 3 ? false : true;
@@ -152,16 +127,8 @@ export default class App extends Component {
                 <Match pattern='/' exactly component={Home} />
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/login' component={Login} />
                 <MatchWhenUnauthed authed={this.state.authed} pattern='/register' component={Register} />
-                <MatchWhenAuthed authed={this.state.authed} pattern='/dashboard'
-                component={() => < Dashboard users={this.state.users} user={this.state.user}
-                onStarClick={this.onStarClick} numVideos={this.state.numVideos}
-                loadMoreVideos={this.loadMoreVideos} startVideos={this.state.startVideos}
-                loadPreviousVideos={this.loadPreviousVideos} /> }
-                />
-
+                <MatchWhenAuthed authed={this.state.authed} pattern='/dashboard' component={Dashboard} />
                 <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={Favorites} />
-
-
                 <Miss render={() => <h3>No Match</h3>} />
               </div>
             </div>
@@ -174,5 +141,7 @@ export default class App extends Component {
 
 App.childContextTypes = {
   data: React.PropTypes.object,
-  user: React.PropTypes.object
+  user: React.PropTypes.object,
+  numVideos: React.PropTypes.object,
+  startVideos: React.PropTypes.object
 }
