@@ -14,6 +14,10 @@ export default class Dashboard extends Component {
     this.loadPreviousVideos = this.loadPreviousVideos.bind(this)
   }
 
+  state = {
+    numVideos: 5
+  }
+
   _onReady(event) {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
@@ -22,32 +26,30 @@ export default class Dashboard extends Component {
   onStarClick(numStars, prevStars, id) {
     const uid = this.context.user.uid
     if(numStars > 3) {
-      ref.child(`/users/${this.context.user.uid}/favorites`).update({[id]: numStars})
-      this.setState({numStars})
+      ref.child(`/users/${uid}/favorites`).update({[id]: numStars})
+      //this.setState({numStars})
     }
   }
 
   loadMoreVideos() {
     let numVideos  = this.state.numVideos
     numVideos += 5
-
+    console.log('numVideos', numVideos)
     this.setState({ numVideos})
-    //console.log("start", numVideos)
   }
 
   loadPreviousVideos() {
     let numVideos  = this.state.numVideos
     numVideos -= 5
+      console.log('numVideos', numVideos)
     this.setState({ numVideos })
   }
 
   render () {
-    const opts = {
-      height: '390',
-      width: '640',
-      playerVars: {
-        autoplay: 1
-      }
+    let uid
+
+    if(this.context.data && this.context.user) {
+     uid = this.context.user.uid
     }
 
     return (
@@ -58,10 +60,10 @@ export default class Dashboard extends Component {
           <li className="previous"><a onClick={this.loadPreviousVideos}>Previous</a></li>
           <li className="next"><a onClick={this.loadMoreVideos}>Next</a></li>
         </ul>
-        {this.context.users?
-        <div id="video-position">
+        {this.context.data && this.context.user ?
+          <div id="video-position">
           <h1 id="zumba-title">Get Your Zumba On!</h1>
-          {this.context.users.youtube.videoIds.slice(this.context.numVideos -5, this.context.numVideos).map(id => {
+          {this.context.data.youtube.videoIds.slice(this.state.numVideos -5, this.state.numVideos).map(id => {
             return (
               <div key={id} className="text-center">
                   <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} />
@@ -70,7 +72,7 @@ export default class Dashboard extends Component {
                     <StarRatingComponent
                       name={id}
                       starCount={5}
-                      value={0}
+                      value={this.context.data.users[uid].favorites[id] || 0}
                       onStarClick={this.onStarClick}
                      />
                   </div>
@@ -85,7 +87,8 @@ export default class Dashboard extends Component {
   }
 }
 Dashboard.contextTypes = {
+  data: React.PropTypes.object,
   user: React.PropTypes.object,
-  numVideos: React.PropTypes.object,
+  numVideos: React.PropTypes.number,
   startVideos: React.PropTypes.object
 }

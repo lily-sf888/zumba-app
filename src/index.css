@@ -109,3 +109,9 @@ a {
 #root {
   padding-bottom: 5%;
 }
+
+.center {
+  font-size: 20px;
+  text-align: center;
+
+}

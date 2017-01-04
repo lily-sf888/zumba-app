@@ -16,7 +16,7 @@ export default class Favorites extends Component {
 
   deleteVideo(videoId) {
     const uid = this.context.user.uid
-    ref.child(`/users/${this.context.user.uid}/favorites/${videoId}`).remove()
+    ref.child(`/users/${uid}/favorites/${videoId}`).remove()
   }
 
  render() {
@@ -47,7 +47,7 @@ export default class Favorites extends Component {
               )
           })}
           </div>
-        : <div>Loading....</div>}
+        : <div className="center">Rate your favorite videos 4 or 5 stars in the videos page and they will appear on this page.</div>}
       </div>
   )
 }

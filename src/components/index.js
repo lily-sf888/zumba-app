@@ -7,7 +7,7 @@ import Home from './Home'
 import Dashboard from './protected/Dashboard'
 import Favorites from './protected/Favorites'
 import { logout } from '../helpers/auth'
-import base, { baseAuth, ref } from '../base'
+import base, { baseAuth } from '../base'
 
 //user authentication
 function MatchWhenAuthed ({component: Component, authed, ...rest}) {
@@ -142,6 +142,6 @@ export default class App extends Component {
 App.childContextTypes = {
   data: React.PropTypes.object,
   user: React.PropTypes.object,
-  numVideos: React.PropTypes.object,
+  numVideos: React.PropTypes.number,
   startVideos: React.PropTypes.object
 }

@@ -8,7 +8,7 @@ import { ref } from './base'
 
  youTube.addParam('type', 'video');
 
- youTube.search('zumba', 50, function(error, result) {
+ youTube.search('Marvin Alves zumba', 50, function(error, result) {
    if (error) {
     console.log("ERROR", error);
    }
