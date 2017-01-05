@@ -56,7 +56,7 @@ export default class Dashboard extends Component {
       //checking that users have signed in, then mapping over the youtube api
       //extracting the ids and inject them into the YouTube component
       <div>
-    
+
         <ul className="pager">
           <li className="previous"><a onClick={this.loadPreviousVideos}>Previous</a></li>
           <li className="next"><a onClick={this.loadMoreVideos}>Next</a></li>
@@ -73,7 +73,7 @@ export default class Dashboard extends Component {
                     <StarRatingComponent
                       name={id}
                       starCount={5}
-                      value={this.context.data.users[uid].favorites[id] || 0}
+                      value={this.context.data.users[uid].favorites? this.context.data.users[uid].favorites[id] || 0 : 0}
                       onStarClick={this.onStarClick}
                      />
                   </div>
