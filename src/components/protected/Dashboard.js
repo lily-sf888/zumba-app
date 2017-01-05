@@ -56,6 +56,7 @@ export default class Dashboard extends Component {
       //checking that users have signed in, then mapping over the youtube api
       //extracting the ids and inject them into the YouTube component
       <div>
+    
         <ul className="pager">
           <li className="previous"><a onClick={this.loadPreviousVideos}>Previous</a></li>
           <li className="next"><a onClick={this.loadMoreVideos}>Next</a></li>
