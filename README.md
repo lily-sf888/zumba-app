@@ -24,6 +24,6 @@ Continuous deployment is done through Travis CI and Heroku.
 
 Our users can scroll through different YouTube videos and rate them from one to
 five stars.  The videos that are rated four stars and above get saved in the
-Favorites page.
+favorites page.
 
 This project was bootstrapped with [Auth with React Router V4 and Firebase V3](https://github.com/tylermcginnis/react-router-firebase-auth).

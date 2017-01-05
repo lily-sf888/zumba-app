@@ -1,14 +1,14 @@
 import YouTube from 'youtube-node'
 import { ref } from './base'
 
-//we access our YouTube api here
+//we access our YouTube API here
  var youTube = new YouTube();
 
  youTube.setKey(process.env.REACT_APP_YOUTUBE_API);
 
  youTube.addParam('type', 'video');
 
- youTube.search('Marvin Alves zumba', 50, function(error, result) {
+ youTube.search('zumba',50, function(error, result) {
    if (error) {
     console.log("ERROR", error);
    }

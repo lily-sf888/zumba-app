@@ -6,8 +6,8 @@ export default class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     login(this.email.value, this.pw.value)
-    //
   }
+  
   render () {
     return (
       <div className="col-sm-6 col-sm-offset-3">

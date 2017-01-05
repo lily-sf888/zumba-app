@@ -7,6 +7,7 @@ import { shallow } from 'enzyme';
 import Dashboard from './components/protected/Dashboard';
 import Favorites from './components/protected/Favorites';
 
+//testing that our components are loading, we are using Jest for our testing framework
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<Home />, div);

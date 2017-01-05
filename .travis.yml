@@ -1,3 +1,5 @@
+#We are using Travis CI to run our tests and deploy our app to Heroku only if all
+#the tests pass, this gets invoked everytime we push up to Github
 language: node_js
 node_js:
 - 4

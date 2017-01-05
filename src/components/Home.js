@@ -22,7 +22,7 @@ export default class Home extends Component {
         African beats, country, hip hop and pop.  It's the perfect combo of fun
         and fitness that is popular world-wide.  In our Zumba App the user is
         able to scroll through different zumba videos pulled from the YouTube
-        api and rate them from one to five stars. The videos that are rated four
+        API and rate them from one to five stars. The videos that are rated four
         stars and above get saved in the favorites page for each registered user.
         So what are we waiting for? Let's zumba!
         </blockquote>

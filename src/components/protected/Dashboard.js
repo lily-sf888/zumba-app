@@ -1,62 +1,57 @@
 import React, { Component } from 'react'
 import StarRatingComponent from 'react-star-rating-component'
 import { ref } from '../../base'
-//import YouTube from 'react-youtube'
 import ReactPlayer from 'react-player'
 
-
+//this is where the list of youTube videos are pulled in from the API
 export default class Dashboard extends Component {
-
+  //binding our functions to the 'this' scope of our Dashboard component
   constructor() {
     super()
     this.onStarClick = this.onStarClick.bind(this)
     this.loadMoreVideos = this.loadMoreVideos.bind(this)
     this.loadPreviousVideos = this.loadPreviousVideos.bind(this)
   }
-
+  //setting initial state of numVideos
   state = {
     numVideos: 5
   }
-
+  //this pauses the video upon page load
   _onReady(event) {
-    // access to player in all event handlers via event.target
     event.target.pauseVideo();
   }
-
+  //checking if user clicks on 4 stars and above and updates our firebase
+  //database accordingly
   onStarClick(numStars, prevStars, id) {
     const uid = this.context.user.uid
     if(numStars > 3) {
       ref.child(`/users/${uid}/favorites`).update({[id]: numStars})
-      //this.setState({numStars})
     }
   }
-
+  //loads the next 5 videos when user clicks on next button
   loadMoreVideos() {
     let numVideos  = this.state.numVideos
     numVideos += 5
-    console.log('numVideos', numVideos)
-    this.setState({ numVideos})
+    this.setState({ numVideos })
   }
-
+  //loads previous 5 videos when user clicks on previous button
   loadPreviousVideos() {
     let numVideos  = this.state.numVideos
     numVideos -= 5
-      console.log('numVideos', numVideos)
     this.setState({ numVideos })
   }
 
   render () {
+    //make sure there's a user in the context and storing user id number
     let uid
-
     if(this.context.data && this.context.user) {
      uid = this.context.user.uid
     }
-
+    //this is where our ReactPlayer and StarRating components get rendered
+    //we are mapping through the youtube api data, extracting the video ids and
+    //injecting the ids into our components so they can get rendered
     return (
-      //checking that users have signed in, then mapping over the youtube api
-      //extracting the ids and inject them into the YouTube component
       <div>
-
         <ul className="pager">
           <li className="previous"><a onClick={this.loadPreviousVideos}>Previous</a></li>
           <li className="next"><a onClick={this.loadMoreVideos}>Next</a></li>
@@ -81,12 +76,15 @@ export default class Dashboard extends Component {
             )
           })}
         </div>
-        : <div>Loading Videos....</div>
+        : <div className="center">Loading Videos....</div>
        }
     </div>
     )
   }
 }
+
+//setting context types for the different variables that are being passed
+//down through context
 Dashboard.contextTypes = {
   data: React.PropTypes.object,
   user: React.PropTypes.object,

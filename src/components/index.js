@@ -9,7 +9,7 @@ import Favorites from './protected/Favorites'
 import { logout } from '../helpers/auth'
 import base, { baseAuth } from '../base'
 
-//user authentication
+//user authentication, our parent component App gets rendered here
 function MatchWhenAuthed ({component: Component, authed, ...rest}) {
   return (
     <Match
@@ -34,7 +34,7 @@ function MatchWhenUnauthed ({component: Component, authed, ...rest}) {
 //App is our parent component, this is where we set states, sync states
 //and set up routes for the different children components
 export default class App extends Component {
-
+  //we are accessing the different variables through state and passing them into context
   getChildContext() {
     return {
       data: this.state.users,
@@ -43,7 +43,7 @@ export default class App extends Component {
       startVideos: this.state.startVideos
     }
   }
-
+  //setting the initial state for the properties
   state = {
     authed: false,
     loading: true,
@@ -51,7 +51,8 @@ export default class App extends Component {
     numStars: 0,
     state: {}
   }
-
+  //after component mounts we set the different states, including syncState
+  //which syncs our current states with the firebase database
   componentDidMount () {
     this.removeListener = baseAuth().onAuthStateChanged((user) => {
       if (user) {
@@ -66,7 +67,6 @@ export default class App extends Component {
         })
       }
     })
-
     this.ref = base.syncState('/', {
       context: this,
       state: 'users'
@@ -77,12 +77,8 @@ export default class App extends Component {
     this.removeListener()
   }
 
-
-
-  // shouldComponentUpdate() {
-  //   return this.state.numStars > 3 ? false : true;
-  // }
-
+  //rendering our components and routes for the different links
+  //checking that some components are user authenticated
   render() {
 
     return this.state.loading === true ? <h1>Loading</h1> : (

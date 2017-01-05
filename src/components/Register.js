@@ -7,6 +7,7 @@ export default class Register extends Component {
     e.preventDefault()
     auth(this.email.value, this.pw.value)
   }
+  
   render () {
     return (
       <div className="col-sm-6 col-sm-offset-3">
