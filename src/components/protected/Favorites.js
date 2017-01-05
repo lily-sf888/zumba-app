@@ -48,7 +48,7 @@ export default class Favorites extends Component {
               )
           })}
           </div>
-        : <div className="center">Loading...<br /><br />Rate your favorite videos 4 or 5 stars in the videos page and they will appear on this page.</div>}
+        : <div className="center">Loading...<br /><br />Rate your favorite videos 4 or 5 stars in the videos page and they will appear here.</div>}
       </div>
   )
 }
