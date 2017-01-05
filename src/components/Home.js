@@ -16,7 +16,7 @@ export default class Home extends Component {
           backgroundColor: bgColors.black,
           padding: 30
         }}>
-        <h3>About Zumba App</h3>
+        <h3>About Let's Zumba</h3>
         Zumba is a fast paced fitness program inspired by various styles of
         Latin American dance.  It can also contain everything from jazz to
         African beats, country, hip hop and pop.  It's the perfect combo of fun
