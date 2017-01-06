@@ -3,7 +3,7 @@ import StarRatingComponent from 'react-star-rating-component'
 import { ref } from '../../base'
 import ReactPlayer from 'react-player'
 
-//this is where the list of youTube videos are pulled in from the API
+//this is where the list of youTube video ids are pulled from Firebase
 export default class Dashboard extends Component {
   //binding our functions to the 'this' scope of our Dashboard component
   constructor() {
@@ -14,19 +14,17 @@ export default class Dashboard extends Component {
   }
   //setting initial state of numVideos
   state = {
-    numVideos: 5
+    numVideos: 5,
+    numStars: 0
   }
   //this pauses the video upon page load
   _onReady(event) {
     event.target.pauseVideo();
   }
-  //checking if user clicks on 4 stars and above and updates our firebase
-  //database accordingly
+  //updating firebase database when user clicks on the star rating
   onStarClick(numStars, prevStars, id) {
     const uid = this.context.user.uid
-    if(numStars > 3) {
-      ref.child(`/users/${uid}/favorites`).update({[id]: numStars})
-    }
+    ref.child(`/users/${uid}/favorites`).update({[id]: numStars})
   }
   //loads the next 5 videos when user clicks on next button
   loadMoreVideos() {
@@ -62,15 +60,20 @@ export default class Dashboard extends Component {
           {this.context.data.youtube.videoIds.slice(this.state.numVideos -5, this.state.numVideos).map(id => {
             return (
               <div key={id} className="text-center">
-                  <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} />
+                  <ReactPlayer
+                  url={`https://www.youtube.com/watch?v=${id}`}
+                  
+                  />
                   <div>
                    <h4>Rate this video</h4>
                     <StarRatingComponent
                       name={id}
                       starCount={5}
-                      value={this.context.data.users[uid].favorites? this.context.data.users[uid].favorites[id] || 0 : 0}
+                      value={this.context.data.users[uid].favorites?
+                        this.context.data.users[uid].favorites[id] || 0 :
+                        0}
                       onStarClick={this.onStarClick}
-                     />
+                    />
                   </div>
               </div>
             )
