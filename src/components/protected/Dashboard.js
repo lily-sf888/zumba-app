@@ -14,14 +14,13 @@ export default class Dashboard extends Component {
   }
   //setting initial state of numVideos
   state = {
-    numVideos: 5
+    numVideos: 1
   }
   //this pauses the video upon page load
   _onReady(event) {
     event.target.pauseVideo();
   }
-  //checking if user clicks on 4 stars and above and updates our firebase
-  //database accordingly
+  //storing user star rating in firebase
   onStarClick(numStars, prevStars, id) {
     const uid = this.context.user.uid
     ref.child(`/users/${uid}/favorites`).update({[id]: numStars})
@@ -29,13 +28,13 @@ export default class Dashboard extends Component {
   //loads the next 5 videos when user clicks on next button
   loadMoreVideos() {
     let numVideos  = this.state.numVideos
-    numVideos += 5
+    numVideos += 1
     this.setState({ numVideos })
   }
   //loads previous 5 videos when user clicks on previous button
   loadPreviousVideos() {
     let numVideos  = this.state.numVideos
-    numVideos -= 5
+    numVideos -= 1
     this.setState({ numVideos })
   }
 
@@ -57,7 +56,7 @@ export default class Dashboard extends Component {
         {this.context.data && this.context.user ?
           <div id="video-position">
           <h1 id="zumba-title">Get Your Zumba On!</h1>
-          {this.context.data.youtube.videoIds.slice(this.state.numVideos -5, this.state.numVideos).map(id => {
+          {this.context.data.youtube.videoIds.slice(this.state.numVideos -1, this.state.numVideos).map(id => {
             return (
               <div key={id} className="text-center">
                   <ReactPlayer

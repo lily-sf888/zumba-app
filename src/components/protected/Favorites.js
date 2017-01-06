@@ -50,7 +50,7 @@ export default class Favorites extends Component {
                   <ReactPlayer
                   url={`https://www.youtube.com/watch?v=${id}`}
                   style={{float:'left'}}
-                  controls={true} 
+                  controls={true}
                   />
                   <div>
                     <button onClick={this.deleteVideo.bind(null, id)} type="button" className="btn btn-danger">Delete</button>
@@ -62,8 +62,8 @@ export default class Favorites extends Component {
         : <div className="center">Loading...<br /><br />Rate your favorite videos 4 or 5 stars in the videos page and they will appear here.</div>}
       </div>
   )
-}
  }
+}
 //storing our context types for the different variables
  Favorites.contextTypes = {
    data: React.PropTypes.object,
