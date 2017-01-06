@@ -3,7 +3,7 @@ import StarRatingComponent from 'react-star-rating-component'
 import { ref } from '../../base'
 import ReactPlayer from 'react-player'
 
-//this is where the list of youTube video ids are pulled from Firebase
+//this is where the list of youTube videos are pulled in from the API
 export default class Dashboard extends Component {
   //binding our functions to the 'this' scope of our Dashboard component
   constructor() {
@@ -14,18 +14,18 @@ export default class Dashboard extends Component {
   }
   //setting initial state of numVideos
   state = {
-    numVideos: 5,
-    numStars: 0
+    numVideos: 5
   }
   //this pauses the video upon page load
   _onReady(event) {
     event.target.pauseVideo();
   }
-  //updating firebase database when user clicks on the star rating
+  //checking if user clicks on 4 stars and above and updates our firebase
+  //database accordingly
   onStarClick(numStars, prevStars, id) {
     const uid = this.context.user.uid
     ref.child(`/users/${uid}/favorites`).update({[id]: numStars})
-  }
+    }
   //loads the next 5 videos when user clicks on next button
   loadMoreVideos() {
     let numVideos  = this.state.numVideos
@@ -62,7 +62,7 @@ export default class Dashboard extends Component {
               <div key={id} className="text-center">
                   <ReactPlayer
                   url={`https://www.youtube.com/watch?v=${id}`}
-                  
+                  controls={true}
                   />
                   <div>
                    <h4>Rate this video</h4>
@@ -70,8 +70,7 @@ export default class Dashboard extends Component {
                       name={id}
                       starCount={5}
                       value={this.context.data.users[uid].favorites?
-                        this.context.data.users[uid].favorites[id] || 0 :
-                        0}
+                      this.context.data.users[uid].favorites[id] || 0 : 0}
                       onStarClick={this.onStarClick}
                     />
                   </div>

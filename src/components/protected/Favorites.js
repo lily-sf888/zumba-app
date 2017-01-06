@@ -29,11 +29,12 @@ export default class Favorites extends Component {
   if(this.context.data && this.context.user) {
    uid = this.context.user.uid
    const favorites = this.context.data.users[uid].favorites
-   if(favorites) favoritesAvail = true
-   // filter all videos to only have > 4 stars
-   filteredFavorites = Object.keys(favorites).filter(function(id) {
-     return favorites[id] > 3 ? true : false
-   })
+   if(favorites) {favoritesAvail = true
+     // filter all videos to only have > 4 stars
+     filteredFavorites = Object.keys(favorites).filter(function(id) {
+       return favorites[id] > 3 ? true : false
+     })
+   }
   }
     //this is where we render our favorite ReactPlayer component
     //we are only mapping over the filtered favorites 4 stars and above
@@ -47,9 +48,9 @@ export default class Favorites extends Component {
               return (
                 <div key={id} className="text-center">
                   <ReactPlayer
-                    url={`https://www.youtube.com/watch?v=${id}`}
-                    style={{float:'left'}}
-                    
+                  url={`https://www.youtube.com/watch?v=${id}`}
+                  style={{float:'left'}}
+                  controls={true} 
                   />
                   <div>
                     <button onClick={this.deleteVideo.bind(null, id)} type="button" className="btn btn-danger">Delete</button>
