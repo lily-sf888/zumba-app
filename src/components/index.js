@@ -47,7 +47,7 @@ export default class App extends Component {
   state = {
     authed: false,
     loading: true,
-    numVideos: 5,
+    numVideos: 1,
     numStars: 0,
     state: {}
   }

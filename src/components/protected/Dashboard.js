@@ -25,13 +25,13 @@ export default class Dashboard extends Component {
     const uid = this.context.user.uid
     ref.child(`/users/${uid}/favorites`).update({[id]: numStars})
     }
-  //loads the next 5 videos when user clicks on next button
+  //loads next video when user clicks on next button
   loadMoreVideos() {
     let numVideos  = this.state.numVideos
     numVideos += 1
     this.setState({ numVideos })
   }
-  //loads previous 5 videos when user clicks on previous button
+  //loads previous video when user clicks on previous button
   loadPreviousVideos() {
     let numVideos  = this.state.numVideos
     numVideos -= 1
