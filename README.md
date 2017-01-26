@@ -1,4 +1,4 @@
-##Zumba App with React Router and Firebase
+##Let's Zumba with React Router and Firebase
 
 ###Tech Stack
 

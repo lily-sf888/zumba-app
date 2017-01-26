@@ -10,7 +10,7 @@ export default class Home extends Component {
   render () {
 
     return (
-        <div className="container z-depth-5" >
+      <div className="container z-depth-5" >
         <h1>Let's Zumba!</h1>
         <blockquote className="text-left" style={{
           backgroundColor: bgColors.black,
