@@ -7,10 +7,11 @@ export default class Register extends Component {
     e.preventDefault()
     auth(this.email.value, this.pw.value)
   }
-  
+
   render () {
     return (
       <div className="col-sm-6 col-sm-offset-3">
+      <div>Go to login for the demo account.</div>
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">

@@ -49,37 +49,37 @@ export default class Dashboard extends Component {
     //injecting the ids into our components so they can get rendered
     return (
       <div>
-        <ul className="pager">
-          <li className="previous"><a onClick={this.loadPreviousVideos}>Previous</a></li>
-          <li className="next"><a onClick={this.loadMoreVideos}>Next</a></li>
-        </ul>
         {this.context.data && this.context.user ?
-          <div id="video-position">
-          <h1 id="zumba-title">Get Your Zumba On!</h1>
+        <div id="video-position">
+        <div className="zumba-title">Get Your Zumba On!</div>
           {this.context.data.youtube.videoIds.slice(this.state.numVideos -1, this.state.numVideos).map(id => {
-            return (
-              <div key={id} className="text-center">
-                  <ReactPlayer
-                  url={`https://www.youtube.com/watch?v=${id}`}
-                  controls={true}
+          return (
+            <div key={id} className="text-center">
+                <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${id}`}
+                controls={true}
+                />
+                <div>
+                <ul className="pager">
+                  <li className="previous"><a onClick={this.loadPreviousVideos}>Previous</a></li>
+                  <li className="next"><a onClick={this.loadMoreVideos}>Next</a></li>
+                </ul>
+                 <h4>Rate this video</h4>
+                  <StarRatingComponent
+                    name={id}
+                    starCount={5}
+                    value={this.context.data.users[uid].favorites?
+                    this.context.data.users[uid].favorites[id] || 0 : 0}
+                    onStarClick={this.onStarClick}
                   />
-                  <div>
-                   <h4>Rate this video</h4>
-                    <StarRatingComponent
-                      name={id}
-                      starCount={5}
-                      value={this.context.data.users[uid].favorites?
-                      this.context.data.users[uid].favorites[id] || 0 : 0}
-                      onStarClick={this.onStarClick}
-                    />
-                  </div>
-              </div>
-            )
-          })}
-        </div>
-        : <div className="center">Loading Videos....</div>
-       }
-    </div>
+                </div>
+            </div>
+          )
+        })}
+      </div>
+      : <div className="center">Loading Videos....</div>
+     }
+     </div>
     )
   }
 }

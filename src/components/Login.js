@@ -7,10 +7,11 @@ export default class Login extends Component {
     e.preventDefault()
     login(this.email.value, this.pw.value)
   }
-  
+
   render () {
     return (
       <div className="col-sm-6 col-sm-offset-3">
+      <div>For demo purposes use Email: demo@zumba.com Password: zumbaisfun</div>
         <h1> Login </h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">

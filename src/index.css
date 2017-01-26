@@ -12,20 +12,14 @@ body{
   color: white;
 }
 
-body::after {
-  content: "";
-  background: url('img/zumba1.png');
+body {
+  background: url('img/zumba-bk.jpg');
   background-size:cover;
-  background-color: #333;
-  opacity: 0.7;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;
-  -webkit-filter: grayscale(1); /* Old WebKit */
-  filter: grayscale(1);
 }
 
 
@@ -107,4 +101,17 @@ a {
 .center {
   font-size: 20px;
   text-align: center;
+}
+
+.zumba-title {
+  text-align: center;
+  display: table;
+  margin: 0 auto;
+  font-weight: 500;
+  font-size: 50px;
+  background: -webkit-linear-gradient(330deg, #99e052 25%, #52e0e0 50%, #9952e0 75%, #e05252 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Chicle', cursive;
+  
 }
