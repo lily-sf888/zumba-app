@@ -10,6 +10,8 @@
 * Travis CI
 * Heroku
 
+![zumba-demo](zumba-demo.png)
+
 With our [Zumba App](https://tranquil-ravine-98658.herokuapp.com/) user
 authentication, register and login/logout functionality is done through Firebase.
 [Firebase](https://firebase.google.com/) is a mobile and web application platform
