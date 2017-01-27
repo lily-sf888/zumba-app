@@ -11,7 +11,7 @@
 * Heroku
 
 
-<img src="zumba-demo.png" alt="zumba demo" style="width: 100px;" />
+<img src="zumba-demo.png" alt="zumba demo" style="width: 50px; height: 50px;" />
 
 With our [Zumba App](https://tranquil-ravine-98658.herokuapp.com/) user
 authentication, register and login/logout functionality is done through Firebase.
