@@ -1,7 +1,7 @@
 ##Let's Zumba with React Router and Firebase
 
-Let's Zumba is build with React components and Firebase database. User's can
-rate zumba videos and save their favorites.
+Let's Zumba is build with React components and a Firebase database. Users can
+rate Zumba videos and save their favorites.
 
 <img src="zumba-demo4.png" alt="zumba demo" />   <img src="zumba-demo3.png" alt="zumba demo"/>
 
