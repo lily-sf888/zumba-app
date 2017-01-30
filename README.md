@@ -7,8 +7,8 @@ rate Zumba videos and save their favorites.
 
 ##Overview
 
-Our app let's the user view zumba exercise videos pulled from the youTube API.
-Users can view different videos and rate them from one to five stars.  Videos that
+Our app lets the user view zumba exercise videos pulled from the youTube API.
+Users can view videos and rate them from one to five stars.  Videos that
 are rated four stars and above get saved in the Favorites page.
 
 ##Use Case
@@ -17,7 +17,7 @@ Zumba is a worldwide phenomenon, there are almost double the amount of Zumba
 classes available than there are gyms in the world. And that's because people can
 do Zumba classes in schools, churches, outdoors - anywhere with a good sound
 system. With our Zumba app we can take that even further by bringing Zumba right
-into the user's home. They can use our app to scroll through many different
+into the user's home. They can use our app to scroll through many
 Zumba videos and save their favorites.
 
 What better way to get a great and fun workout without having to go to the gym?
@@ -66,8 +66,8 @@ authentication, register and login/logout functionality is done through Firebase
 provided by Google. One of it's best features is a realtime database, which allows
 developers to store and sync data across multiple clients.
 
-The Zumba App is build and written in ES6 and React.  We pull data from the YouTube
-API, store the necessary data in Firebase and build the different parts of the app
+The Zumba App is written in ES6 and built with React.  We pull data from the YouTube
+API, store the necessary data in Firebase and build the UI modules of the app
 with React components.  State is synced with our Firebase database, so whenever the
 user makes a change in the app or the database, state is synced from both ends.
 Continuous deployment is done through Travis CI and Heroku.
