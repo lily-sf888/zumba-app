@@ -13,7 +13,7 @@ body{
 }
 
 body {
-  background: url('img/zumba-bk.jpg');
+  background-color: black;
   background-size:cover;
   top: 0;
   left: 0;
@@ -113,5 +113,5 @@ a {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: 'Chicle', cursive;
-  
+
 }
