@@ -4,7 +4,7 @@ import { ref } from './base'
 //we access our YouTube API here
  var youTube = new YouTube();
 
- youTube.setKey(process.env.REACT_APP_YOUTUBE_API);
+ youTube.setKey('AIzaSyA156PUcV0duLOUoBGAmP4h9u--Iqit0X8');
 
  youTube.addParam('type', 'video');
 

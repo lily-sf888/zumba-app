@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-import { Match, BrowserRouter, Link, Miss, Redirect } from 'react-router'
+import { Route, BrowserRouter, Link, Redirect, Switch } from 'react-router-dom'
 import Login from './Login'
 import Register from './Register'
 import Home from './Home'
@@ -10,9 +10,9 @@ import { logout } from '../helpers/auth'
 import base, { baseAuth } from '../base'
 
 //user authentication, our parent component App gets rendered here
-function MatchWhenAuthed ({component: Component, authed, ...rest}) {
+function PrivateRoute ({component: Component, authed, ...rest}) {
   return (
-    <Match
+    <Route
       {...rest}
       render={(props) => authed === true
         ? <Component {...props} />
@@ -21,9 +21,9 @@ function MatchWhenAuthed ({component: Component, authed, ...rest}) {
   )
 }
 
-function MatchWhenUnauthed ({component: Component, authed, ...rest}) {
+function PublicRoute ({component: Component, authed, ...rest}) {
   return (
-    <Match
+    <Route
       {...rest}
       render={(props) => authed === false
         ? <Component {...props} />
@@ -72,18 +72,15 @@ export default class App extends Component {
       state: 'users'
     })
   }
-
   componentWillUnmount () {
     this.removeListener()
   }
-
   //rendering our components and routes for the different links
   //checking that some components are user authenticated
   render() {
 
     return this.state.loading === true ? <h1>Loading</h1> : (
       <BrowserRouter>
-        {({router}) => (
           <div>
             <nav className="navbar navbar-default navbar-fixed-top">
               <div className="container">
@@ -107,7 +104,7 @@ export default class App extends Component {
                           onClick={() => {
                             logout()
                             this.setState({authed: false})
-                            router.transitionTo('/')
+
                           }}
                           className="navbar-brand">Logout</button>
                       : <span>
@@ -120,16 +117,17 @@ export default class App extends Component {
             </nav>
             <div className="container">
               <div className="row">
-                <Match pattern='/' exactly component={Home} />
-                <MatchWhenUnauthed authed={this.state.authed} pattern='/login' component={Login} />
-                <MatchWhenUnauthed authed={this.state.authed} pattern='/register' component={Register} />
-                <MatchWhenAuthed authed={this.state.authed} pattern='/dashboard' component={Dashboard} />
-                <MatchWhenAuthed authed={this.state.authed} pattern="/favorites" component={Favorites} />
-                <Miss render={() => <h3>No Match</h3>} />
+                <Switch>
+                  <Route path='/' exact component={Home} />
+                  <PublicRoute authed={this.state.authed} path='/login' component={Login} />
+                  <PublicRoute authed={this.state.authed} path='/register' component={Register} />
+                  <PrivateRoute authed={this.state.authed} path='/dashboard' component={Dashboard} />
+                  <PrivateRoute authed={this.state.authed} path='/favorites' component={Favorites} />
+                  <Route render={() => <h3>No Match</h3>} />
+                </Switch>
               </div>
             </div>
           </div>
-        )}
       </BrowserRouter>
     );
   }
