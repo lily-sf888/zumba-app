@@ -78,7 +78,6 @@ export default class App extends Component {
   //rendering our components and routes for the different links
   //checking that some components are user authenticated
   render() {
-
     return this.state.loading === true ? <h1>Loading</h1> : (
       <BrowserRouter>
           <div>

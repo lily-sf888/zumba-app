@@ -46,7 +46,7 @@ to the home page and scroll through more videos and rate them.
 
 ##Working Prototype
 
-For a working demo of the app go [here](https://tranquil-ravine-98658.herokuapp.com/).
+For a working demo of the app go [here](https://aqueous-castle-55342.herokuapp.com/).
 
 ##Technical
 
