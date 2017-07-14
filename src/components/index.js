@@ -88,7 +88,7 @@ export default class App extends Component {
                 </div>
                 <ul className="nav navbar-nav pull-right">
                   <li>
-                    <Link to="/" className="navbar-brand">Home</Link>
+                    <Link to="/" className="navbar-brand">About</Link>
                   </li>
                   <li>
                     <Link to="/dashboard" className="navbar-brand">Videos</Link>
@@ -107,7 +107,7 @@ export default class App extends Component {
                           }}
                           className="navbar-brand">Logout</button>
                       : <span>
-                          <Link to="/login" className="navbar-brand">Login</Link>
+                          <Link to="/" className="navbar-brand">Login</Link>
                           <Link to="/register" className="navbar-brand">Register</Link>
                         </span>}
                   </li>
