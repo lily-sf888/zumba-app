@@ -1,17 +1,17 @@
-##Let's Zumba with React Router and Firebase
+## Let's Zumba with React Router and Firebase
 
 Let's Zumba is build with React components and a Firebase database. Users can
 rate Zumba videos and save their favorites.
 
 <img src="zumba-demo4.png" alt="zumba demo" />   <img src="zumba-demo3.png" alt="zumba demo"/>
 
-##Overview
+## Overview
 
 Our app lets the user view zumba exercise videos pulled from the youTube API.
 Users can view videos and rate them from one to five stars.  Videos that
 are rated four stars and above get saved in the Favorites page.
 
-##Use Case
+## Use Case
 
 Zumba is a worldwide phenomenon, there are almost double the amount of Zumba
 classes available than there are gyms in the world. And that's because people can
@@ -26,7 +26,7 @@ do a dance off alone in their living room. It appeals to people young and old,
 our app can be useful to anyone who just wants a simple and fun exercise in the
 privacy of their own home.
 
-##UX
+## UX
 
 The initial wireframes can be seen below:
 
@@ -44,13 +44,13 @@ user logs out and logs back in, they can go directly to their Favorites page,
 where all the videos they rated four stars and above are saved. Or they can go
 to the home page and scroll through more videos and rate them.
 
-##Working Prototype
+## Working Prototype
 
 For a working demo of the app go [here](https://aqueous-castle-55342.herokuapp.com/).
 
-##Technical
+## Technical
 
-###Tech Stack
+### Tech Stack
 
 * React
 * Firebase
